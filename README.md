@@ -1,5 +1,21 @@
 # BookStore Assignment-1
 
+## Environment
+
+- Framework is [.NET 7](https://github.com/dotnet).
+
+##### To run
+>```bash
+> cd ./WebAPI
+> dotnet run 
+>```
+
+##### To run with hot-reload
+>```bash
+> cd ./WebAPI
+> dotnet watch 
+>```
+
 ## API Endpoints
 
 <details>
