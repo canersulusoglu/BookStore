@@ -21,10 +21,10 @@ public class UpdateBookPatchCommand
         Model!.ApplyTo(updatedBook);
 
         // Checking which properties updated
-        book.Title = book.Title != default ? updatedBook.Title : book.Title;
-        book.GenreId = book.GenreId != default ? updatedBook.GenreId : book.GenreId;
-        book.PageCount = book.PageCount != default ? updatedBook.PageCount : book.PageCount;
-        book.PublishDate = book.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
+        book.Title = updatedBook.Title != default ? updatedBook.Title : book.Title;
+        book.GenreId = updatedBook.GenreId != default ? updatedBook.GenreId : book.GenreId;
+        book.PageCount = updatedBook.PageCount != default ? updatedBook.PageCount : book.PageCount;
+        book.PublishDate = updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
         _dbContext.SaveChanges();
     }
 }
