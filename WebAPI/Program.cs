@@ -12,6 +12,8 @@ builder.Services.AddSwaggerGen(options => {
 
 // Add InMemoryDatabase service.
 builder.Services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStore"));
+// Add AutoMapper service.
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

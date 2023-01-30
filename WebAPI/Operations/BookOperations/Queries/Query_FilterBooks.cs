@@ -4,9 +4,11 @@ public class FilterBooksQuery
 {
     public FilterBooksModel? Model { get; set; }
     private readonly BookStoreDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public FilterBooksQuery(BookStoreDbContext dbContext) {
+    public FilterBooksQuery(BookStoreDbContext dbContext, IMapper mapper) {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
     public List<FilterBooksViewModel> Handle()
@@ -53,15 +55,7 @@ public class FilterBooksQuery
             }
         }
 
-        List<FilterBooksViewModel> vm = new List<FilterBooksViewModel>();
-        foreach(Book book in bookList){
-            vm.Add(new FilterBooksViewModel{
-                Title = book.Title!,
-                Genre = ((GenreEnum)book.GenreId).ToString(),
-                PageCount = book.PageCount,
-                PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy")
-            });
-        }
+        List<FilterBooksViewModel> vm = _mapper.Map<List<FilterBooksViewModel>>(bookList);
         return vm;
     }
 }

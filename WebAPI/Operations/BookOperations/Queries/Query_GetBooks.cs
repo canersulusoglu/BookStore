@@ -3,24 +3,16 @@ namespace WebAPI.Operations.BookOperations.Queries;
 public class GetBooksQuery
 {
     private readonly BookStoreDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public GetBooksQuery(BookStoreDbContext dbContext) {
+    public GetBooksQuery(BookStoreDbContext dbContext, IMapper mapper) {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
 
     public List<GetBooksViewModel> Handle()
     {
-
-        List<GetBooksViewModel> vm = new List<GetBooksViewModel>();
-        foreach(Book book in _dbContext.Books!.ToList<Book>()){
-            vm.Add(new GetBooksViewModel{
-                Id = book.Id,
-                Title = book.Title!,
-                Genre = ((GenreEnum)book.GenreId).ToString(),
-                PageCount = book.PageCount,
-                PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy")
-            });
-        }
+        List<GetBooksViewModel> vm = _mapper.Map<List<GetBooksViewModel>>(_dbContext.Books!.ToList<Book>());
         return vm;
     }
 }

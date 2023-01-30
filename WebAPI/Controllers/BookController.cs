@@ -6,8 +6,10 @@ namespace WebAPI.Controllers;
 [Route("[controller]s")]
 public class BookController : ControllerBase {
     private readonly BookStoreDbContext _dbContext;
-    public BookController(BookStoreDbContext dbContext){
+    private readonly IMapper _mapper;
+    public BookController(BookStoreDbContext dbContext, IMapper mapper){
         _dbContext = dbContext;
+        _mapper = mapper;
     }
     /// <summary>
     /// Gets all books.
@@ -15,7 +17,7 @@ public class BookController : ControllerBase {
     /// <response code="200">Returns all books.</response>
     [HttpGet]
     public IActionResult GetBooks() {
-        GetBooksQuery query = new GetBooksQuery(_dbContext);
+        GetBooksQuery query = new GetBooksQuery(_dbContext, _mapper);
         var result = query.Handle();
         return Ok(result);
     }
@@ -26,7 +28,7 @@ public class BookController : ControllerBase {
     /// <response code="200">Returns Book with specific id.</response>
     [HttpGet("{id}")]
     public IActionResult GetBookById([FromRoute] int id) {
-        GetBookByIdQuery query = new GetBookByIdQuery(_dbContext);
+        GetBookByIdQuery query = new GetBookByIdQuery(_dbContext, _mapper);
         try
         {
             query.ID = id;
@@ -45,8 +47,8 @@ public class BookController : ControllerBase {
     /// <response code="400">Returns 400 status code, if book name is already exists.</response>
     /// <response code="200">Returns 200 status code, if book successfully added.</response>
     [HttpPost]
-    public IActionResult AddBook([FromBody] CreateBookModel newBook){
-        CreateBookCommand command = new CreateBookCommand(_dbContext);
+    public IActionResult CreateBook([FromBody] CreateBookModel newBook){
+        CreateBookCommand command = new CreateBookCommand(_dbContext, _mapper);
         try
         {
             command.Model = newBook;
@@ -132,7 +134,7 @@ public class BookController : ControllerBase {
     /// <response code="200">Returns filtered books.</response>
     [HttpGet("filter")]
     public IActionResult FilterBooks([FromQuery] FilterBooksModel filter){
-        FilterBooksQuery query = new FilterBooksQuery(_dbContext);
+        FilterBooksQuery query = new FilterBooksQuery(_dbContext, _mapper);
         query.Model = filter;
         var result = query.Handle();
         return Ok(result);
