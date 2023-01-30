@@ -1,5 +1,11 @@
-using WebAPI.Operations.BookOperations.Commands;
-using WebAPI.Operations.BookOperations.Queries;
+using WebAPI.Operations.BookOperations.Commands.CreateBook;
+using WebAPI.Operations.BookOperations.Commands.DeleteBook;
+using WebAPI.Operations.BookOperations.Commands.UpdateBook;
+using WebAPI.Operations.BookOperations.Commands.UpdateBookPatch;
+using WebAPI.Operations.BookOperations.Queries.GetBookById;
+using WebAPI.Operations.BookOperations.Queries.GetBooks;
+using WebAPI.Operations.BookOperations.Queries.FilterBooks;
+
 namespace WebAPI.Controllers;
 
 [ApiController]
@@ -32,6 +38,7 @@ public class BookController : ControllerBase {
         try
         {
             query.ID = id;
+            query.Validate();
             var result = query.Handle();
             return Ok(result);
         }
@@ -52,6 +59,7 @@ public class BookController : ControllerBase {
         try
         {
             command.Model = newBook;
+            command.Validate();
             command.Handle();
         }
         catch (Exception ex)
@@ -73,6 +81,7 @@ public class BookController : ControllerBase {
         {
             command.ID = id;
             command.Model = updatedBook;
+            command.Validate();
             command.Handle();
         }
         catch (Exception ex)
@@ -94,6 +103,7 @@ public class BookController : ControllerBase {
         {
             command.ID = id;
             command.Model = patchDocument;
+            command.Validate();
             command.Handle();
         }
         catch (Exception ex)
@@ -114,6 +124,7 @@ public class BookController : ControllerBase {
         try
         {
             command.ID = id;
+            command.Validate();
             command.Handle();
         }
         catch (Exception ex)
@@ -135,8 +146,16 @@ public class BookController : ControllerBase {
     [HttpGet("filter")]
     public IActionResult FilterBooks([FromQuery] FilterBooksModel filter){
         FilterBooksQuery query = new FilterBooksQuery(_dbContext, _mapper);
-        query.Model = filter;
-        var result = query.Handle();
-        return Ok(result);
+        try
+        {
+            query.Model = filter;
+            query.Validate();
+            var result = query.Handle();
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

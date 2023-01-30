@@ -1,5 +1,7 @@
-using WebAPI.Operations.BookOperations.Commands;
-using WebAPI.Operations.BookOperations.Queries;
+using WebAPI.Operations.BookOperations.Commands.CreateBook;
+using WebAPI.Operations.BookOperations.Queries.GetBookById;
+using WebAPI.Operations.BookOperations.Queries.GetBooks;
+using WebAPI.Operations.BookOperations.Queries.FilterBooks;
 
 namespace WebAPI.Common;
 

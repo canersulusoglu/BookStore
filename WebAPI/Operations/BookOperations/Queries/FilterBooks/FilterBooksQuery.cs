@@ -1,4 +1,4 @@
-namespace WebAPI.Operations.BookOperations.Queries;
+namespace WebAPI.Operations.BookOperations.Queries.FilterBooks;
 
 public class FilterBooksQuery
 {
@@ -57,6 +57,12 @@ public class FilterBooksQuery
 
         List<FilterBooksViewModel> vm = _mapper.Map<List<FilterBooksViewModel>>(bookList);
         return vm;
+    }
+
+    public void Validate()
+    {
+        FilterBooksQueryValidator validator = new FilterBooksQueryValidator();
+        validator.ValidateAndThrow(this);
     }
 }
 

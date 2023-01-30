@@ -1,4 +1,4 @@
-namespace WebAPI.Operations.BookOperations.Commands;
+namespace WebAPI.Operations.BookOperations.Commands.UpdateBook;
 
 public class UpdateBookCommand
 {
@@ -23,6 +23,12 @@ public class UpdateBookCommand
         book.PageCount = Model.PageCount != default ? Model.PageCount : book.PageCount;
         book.PublishDate = Model.PublishDate != default ? Model.PublishDate : book.PublishDate;
         _dbContext.SaveChanges();
+    }
+
+    public void Validate()
+    {
+        UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+        validator.ValidateAndThrow(this);
     }
 }
 

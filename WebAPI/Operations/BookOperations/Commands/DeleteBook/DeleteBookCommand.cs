@@ -1,4 +1,4 @@
-namespace WebAPI.Operations.BookOperations.Commands;
+namespace WebAPI.Operations.BookOperations.Commands.DeleteBook;
 
 public class DeleteBookCommand
 {
@@ -17,5 +17,11 @@ public class DeleteBookCommand
         }
         _dbContext.Books!.Remove(book);
         _dbContext.SaveChanges();
+    }
+
+    public void Validate()
+    {
+        DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+        validator.ValidateAndThrow(this);
     }
 }

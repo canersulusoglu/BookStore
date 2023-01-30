@@ -1,4 +1,4 @@
-namespace WebAPI.Operations.BookOperations.Queries;
+namespace WebAPI.Operations.BookOperations.Queries.GetBookById;
 
 public class GetBookByIdQuery
 {
@@ -17,6 +17,12 @@ public class GetBookByIdQuery
         if(book is null)
             throw new InvalidOperationException("Book is not exists.");
         return _mapper.Map<GetBookByIdViewModel>(book);
+    }
+
+    public void Validate()
+    {
+        GetBookByIdQueryValidator validator = new GetBookByIdQueryValidator();
+        validator.ValidateAndThrow(this);
     }
 }
 

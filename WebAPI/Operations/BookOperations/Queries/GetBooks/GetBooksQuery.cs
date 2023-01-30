@@ -1,4 +1,4 @@
-namespace WebAPI.Operations.BookOperations.Queries;
+namespace WebAPI.Operations.BookOperations.Queries.GetBooks;
 
 public class GetBooksQuery
 {

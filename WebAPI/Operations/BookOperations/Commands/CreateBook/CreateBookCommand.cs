@@ -1,4 +1,4 @@
-namespace WebAPI.Operations.BookOperations.Commands;
+namespace WebAPI.Operations.BookOperations.Commands.CreateBook;
 
 public class CreateBookCommand
 {
@@ -21,6 +21,12 @@ public class CreateBookCommand
         book = _mapper.Map<Book>(Model);
         _dbContext.Books!.Add(book);
         _dbContext.SaveChanges();
+    }
+
+    public void Validate()
+    {
+        CreateBookCommandValidator validator = new CreateBookCommandValidator();
+        validator.ValidateAndThrow(this);
     }
 }
 
