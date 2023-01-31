@@ -2,19 +2,25 @@
 
 ## Environment
 
-- Framework is [.NET 7](https://github.com/dotnet).
+- Used Framework is [.NET 7](https://github.com/dotnet).
+
+##### To install packages
+```console
+cd ./WebAPI
+dotnet restore 
+```
 
 ##### To run
->```bash
-> cd ./WebAPI
-> dotnet run 
->```
+```console
+cd ./WebAPI
+dotnet run 
+```
 
 ##### To run with hot-reload
->```bash
-> cd ./WebAPI
-> dotnet watch 
->```
+```console
+cd ./WebAPI
+dotnet watch 
+```
 
 ## API Endpoints
 
@@ -26,11 +32,12 @@
 </summary>
 
 ##### Parameters
-> None
+None
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         | `application/json;charset=UTF-8`  | Array of books.                                                     |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         | `application/json;charset=UTF-8`  | Array of books.                                                     |
+---
 </details>
 
 <details>
@@ -41,21 +48,22 @@
 </summary>
 
 ##### Parameters
-> None
+None
 ##### Request Body
->```json
->{
->  "title": "string",
->  "genreId": 1,
->  "pageCount": 0,
->  "publishDate": "2023-01-29T20:36:53.302Z"
->}
->```
+```json
+{
+    "title": "string",
+    "genreId": 1,
+    "pageCount": 0,
+    "publishDate": "2023-01-29T20:36:53.302Z"
+}
+```
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         |                                   |                                                                     |
-> | `400`         | `text/plain;charset=UTF-8`        | Book is already exists.                                             |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         |                                   |                                                                     |
+| `400`         | `text/plain;charset=UTF-8`        | Book is already exists.                                             |
+---
 </details>
 
 <details>
@@ -66,14 +74,15 @@
 </summary>
 
 ##### Parameters
-> | name   |  type      | data type      | description                                          |
-> |--------|------------|----------------|------------------------------------------------------|
-> |  `id`  |  required  | integer($int32)| Book unique id number                                |
+| name   |  type      | data type      | description                                          |
+|--------|------------|----------------|------------------------------------------------------|
+|  `id`  |  required  | integer($int32)| Book unique id number                                |
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         | `application/json;charset=UTF-8`  | Book.                                                               |
-> | `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         | `application/json;charset=UTF-8`  | Book.                                                               |
+| `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+---
 </details>
 
 <details>
@@ -84,19 +93,20 @@
 </summary>
 
 ##### Parameters
-> | name            |  type      | data type         | description                                          |
-> |-----------------|------------|-------------------|------------------------------------------------------|
-> |`Title`          |  optional  | string            | Book title.                                          |
-> |`MinPageCount`   |  optional  | integer($int32)   | Book minimum page count.                             |
-> |`MaxPageCount`   |  optional  | integer($int32)   | Book maximum page count.                             |
-> |`PublishDateFrom`|  optional  | string($date-time)| Book publish date start.                             |
-> |`PublishDateTo`  |  optional  | string($date-time)| Book publish date end.                               |
-> |`OrderBy`        |  optional  | string            | Orders filtered books.                               |
+| name            |  type      | data type         | description                                          |
+|-----------------|------------|-------------------|------------------------------------------------------|
+|`Title`          |  optional  | string            | Book title.                                          |
+|`MinPageCount`   |  optional  | integer($int32)   | Book minimum page count.                             |
+|`MaxPageCount`   |  optional  | integer($int32)   | Book maximum page count.                             |
+|`PublishDateFrom`|  optional  | string($date-time)| Book publish date start.                             |
+|`PublishDateTo`  |  optional  | string($date-time)| Book publish date end.                               |
+|`OrderBy`        |  optional  | string            | Orders filtered books.                               |
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         |                                   |                                                                     |
-> | `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         |                                   |                                                                     |
+| `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+---
 </details>
 
 <details>
@@ -107,23 +117,24 @@
 </summary>
 
 ##### Parameters
-> | name   |  type      | data type      | description                                          |
-> |--------|------------|----------------|------------------------------------------------------|
-> |  `id`  |  required  | integer($int32)| Book unique id number                                |
+ | name   |  type      | data type      | description                                          |
+ |--------|------------|----------------|------------------------------------------------------|
+ |  `id`  |  required  | integer($int32)| Book unique id number                                |
 ##### Request Body
->```json
->{
->  "title": "string",
->  "genreId": 1,
->  "pageCount": 0,
->  "publishDate": "2023-01-29T20:36:53.302Z"
->}
->```
+```json
+{
+    "title": "string",
+    "genreId": 1,
+    "pageCount": 0,
+    "publishDate": "2023-01-29T20:36:53.302Z"
+}
+```
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         |                                   |                                                                     |
-> | `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         |                                   |                                                                     |
+| `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+---
 </details>
 
 <details>
@@ -134,25 +145,25 @@
 </summary>
 
 ##### Parameters
-> | name   |  type      | data type      | description                                          |
-> |--------|------------|----------------|------------------------------------------------------|
-> |  `id`  |  required  | integer($int32)| Book unique id number                                |
+| name   |  type      | data type      | description                                          |
+|--------|------------|----------------|------------------------------------------------------|
+|  `id`  |  required  | integer($int32)| Book unique id number                                |
 ##### Request Body
->```json
->[
->  {
->    "path": "/Title",
->    "op": "replace",
->    "value": "NewTitle"
->  }
->  ...
->]
->```
+```json
+[
+    {
+        "path": "/Title",
+        "op": "replace",
+        "value": "NewTitle"
+    },
+]
+```
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         |                                   |                                                                     |
-> | `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         |                                   |                                                                     |
+| `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+---
 </details>
 
 <details>
@@ -163,12 +174,13 @@
 </summary>
 
 ##### Parameters
-> | name   |  type      | data type      | description                                          |
-> |--------|------------|----------------|------------------------------------------------------|
-> |  `id`  |  required  | integer($int32)| Book unique id number                                |
+| name   |  type      | data type      | description                                          |
+|--------|------------|----------------|------------------------------------------------------|
+|  `id`  |  required  | integer($int32)| Book unique id number                                |
 ##### Responses
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `200`         |                                   |                                                                     |
-> | `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+| http code     | content-type                      | response                                                            |
+|---------------|-----------------------------------|---------------------------------------------------------------------|
+| `200`         |                                   |                                                                     |
+| `400`         | `text/plain;charset=UTF-8`        | Book is not exists.                                                 |
+---
 </details>
